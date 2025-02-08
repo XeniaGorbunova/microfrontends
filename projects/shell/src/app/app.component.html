@@ -331,6 +331,12 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+Counter: {{ $counter() }}
+<ul>
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/users">Users</a></li>
+  <li><a routerLink="/users/dashboard">User Dashboard</a></li>
+  <li><a routerLink="/users/form">User Form</a></li>
+</ul>
 
 <router-outlet />

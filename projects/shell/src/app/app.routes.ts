@@ -9,7 +9,7 @@ export const routes: Routes = [
     },
     {
         path: 'users',
-        loadComponent: () =>
-            loadRemoteModule('users', './Component').then((m) => m.AppComponent),
+        loadChildren: () =>
+            loadRemoteModule('users', './routes').then((m) => m.routes),
     },
 ];
