@@ -1,30 +1,43 @@
-# NativeFederationDemoApp
+# Angular Native Federation Demo App
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
 ## Development server
 
-To start a local development server, run:
+To start a local development server, run in the root folder:
 
 ```bash
-ng serve
+ng build state
+ng serve shell
+ng serve users
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`.
 
-## Code scaffolding
+## Project description
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Here we use Native Federation, standalone components, routing in the remote application and signals. The counter value ia passed through state library to shell and users application and updates automatically sinse it is a signal const.
+If you make some changes in the StateService you need to call ng build state in the root folder to update the state library.
+
+## How it was created
 
 ```bash
-ng generate component component-name
+ng new microfrontends no-create-application
+ng generate application shell
+ng generate application users
+npm i @angular-architects/native-federation
+ng g @angular-architects/native-federation:init --project users --port 4201 --type remote
+ng g @angular-architects/native-federation:init --project shell --port 4200 --type dynamic-host
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To use routing in the remote app:
+
+add this line to the exposes in the users/federation.config.ts
 
 ```bash
-ng generate --help
+'./routes': '././projects/users/src/app/app.routes.ts'
 ```
+and use loadChildren in the shell app.routes.ts
 
 ## Building
 
@@ -35,24 +48,6 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 
